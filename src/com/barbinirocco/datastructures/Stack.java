@@ -28,5 +28,29 @@ public class Stack <T> {
 		this.currentSize = 0;
 		stack = (T[]) (new Object[size]);
 	}
+	
+	public int getMaxSize() {
+		return maxSize;
+	}
+	
+	public int getCurrentSize() {
+		return currentSize;
+	}
+	
+	public boolean isEmpty() {
+		return getCurrentSize() == 0; 
+	}
+	
+	public boolean isFull() {
+		return getCurrentSize() == getMaxSize();
+	}
+	
+	public void push(T element) {
+		; // TODO
+	}
+	
+	public T pop() {
+		return null; // TODO
+	}
 
 }
