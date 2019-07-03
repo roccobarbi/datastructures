@@ -6,6 +6,8 @@ package com.barbinirocco.datastructures.unittests;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import com.barbinirocco.datastructures.Stack;
+import com.barbinirocco.datastructures.exceptions.OverflowException;
+import com.barbinirocco.datastructures.exceptions.UnderflowException;
 
 /**
  * @author rocco barbini (roccobarbi@gmail.com)
@@ -65,9 +67,13 @@ class StackTest {
 	void testPopping() {
 		int size = 20;
 		Stack<Integer> stack = new Stack<Integer>(size, Integer.valueOf(1));
+		try {
 		stack.push(1);
 		stack.push(2);
 		stack.push(3);
+		} catch (Exception e) {
+			fail("Exception while pushing!");
+		}
 		try {
 			assertTrue(stack.pop() == Integer.valueOf(3), "Popped the wrong element!");
 			assertTrue(stack.pop() == Integer.valueOf(2), "Popped the wrong element!");
@@ -86,8 +92,25 @@ class StackTest {
 	
 	@Test
 	void testExceptions() {
-		// TODO: check also exceptions are thrown on overflow and underflow
-		fail("Test not yet implemented!");
+		int size = 20;
+		Stack<Integer> stack = new Stack<Integer>(size, Integer.valueOf(1));
+		try {
+			for (int i = 0; i < 21; i++) stack.push(i);
+			fail("Did not throw OverflowException when currentSize reached maxSize!");
+		} catch (OverflowException e) {
+			// ok
+		} catch (Exception e) {
+			fail("Exception (different from the expected OverflowException) while pushing!");
+		}
+		stack = new Stack<Integer>(size, Integer.valueOf(1));
+		try {
+			stack.pop();
+			fail("Did not throw OverflowException when currentSize reached maxSize!");
+		} catch (UnderflowException e) {
+			// ok
+		} catch (Exception e) {
+			fail("Exception (different from the expected UnderflowException) while popping!");
+		}
 	}
 
 }

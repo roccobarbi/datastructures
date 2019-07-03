@@ -3,6 +3,9 @@
  */
 package com.barbinirocco.datastructures;
 
+import com.barbinirocco.datastructures.exceptions.OverflowException;
+import com.barbinirocco.datastructures.exceptions.UnderflowException;
+
 /**
  * Implements a non-resizable stack.
  * 
@@ -45,12 +48,14 @@ public class Stack <T> {
 		return getCurrentSize() == getMaxSize();
 	}
 	
-	public void push(T element) {
-		; // TODO
+	public void push(T element) throws OverflowException {
+		if (isFull()) throw new OverflowException("Tried pushing a full stack!");
+		stack[currentSize++] = element;
 	}
 	
-	public T pop() {
-		return null; // TODO
+	public T pop() throws UnderflowException {
+		if (isEmpty()) throw new UnderflowException("Tried popping an empty stack!");
+		return stack[--currentSize];
 	}
 
 }
