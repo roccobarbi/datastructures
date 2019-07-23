@@ -23,7 +23,7 @@ public class Stack <T> {
 	 * define the type for the stack: it is not pushed to it.
 	 * 
 	 * @param size The maximum size allowed for the stack.
-	 * @param sample An instance of the type that will be stored in the class.
+	 * @param sample An instance of the type that will be stored in the stack.
 	 */
 	@SuppressWarnings("unchecked")
 	public Stack (int size, T sample) {

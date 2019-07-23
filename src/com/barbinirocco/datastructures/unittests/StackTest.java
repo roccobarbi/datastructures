@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.barbinirocco.datastructures.unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
