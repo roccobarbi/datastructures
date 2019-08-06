@@ -3,6 +3,9 @@
  */
 package com.barbinirocco.datastructures;
 
+import com.barbinirocco.datastructures.exceptions.OverflowException;
+import com.barbinirocco.datastructures.exceptions.UnderflowException;
+
 /**
  * Implements a queue.
  * 
@@ -44,6 +47,20 @@ public class Queue <T> {
 	
 	public boolean isFull() {
 		return getCurrentSize() == getMaxSize();
+	}
+	
+	public void enqueue(T element) throws OverflowException {
+		if(getCurrentSize() >= getMaxSize()) throw new OverflowException("Queue already filled to capacity!");
+		if(tail == getMaxSize()) tail = 0;
+		queue[tail++] = element;
+		currentSize++;
+	}
+	
+	public T dequeue() throws UnderflowException {
+		if (getCurrentSize() < 1) throw new UnderflowException("Queue already empty!");
+		currentSize--;
+		if(head == getMaxSize()) head = 0;
+		return queue[head++];
 	}
 
 }
