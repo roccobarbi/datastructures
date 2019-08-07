@@ -30,7 +30,7 @@ public class StaticStack <T> implements Stack<T> {
 	public StaticStack (int size, T sample) {
 		this.maxSize = size;
 		this.currentSize = 0;
-		stack = (T[]) (new Object[size]);
+		this.stack = (T[]) (new Object[size]);
 	}
 	
 	private int getMaxSize() {
