@@ -10,7 +10,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-class QueueTest {
+class StaticQueueTest {
 
 	@Test
 	void testConstruction() {
@@ -20,12 +20,6 @@ class QueueTest {
 			queue = new StaticQueue<Integer>(size, Integer.valueOf(1));
 		} catch (Exception e) {
 			fail("Exception while creating an integer Queue.");
-		}
-		try {
-			assertTrue(queue.getMaxSize() == size, "getMaxSize does not return the correct size!");
-			assertTrue(queue.getCurrentSize() == 0, "getCurrentSize does not return the correct size!");
-		} catch (Exception e) {
-			fail("Exception while getting sizes!");
 		}
 		try {
 			assertTrue(queue.isEmpty(), "Queue does not appear empty when it is!");
@@ -43,7 +37,7 @@ class QueueTest {
 			for(int i = 0; i < size; i++) {
 				queue.enqueue(i);
 			}
-			assertTrue(queue.getCurrentSize() == queue.getMaxSize(), "Queue size not equal to max after filling to capacity!");
+			assertTrue(queue.isFull(), "Queue is not full after filling to capacity!");
 		} catch (Exception e) {
 			fail("Exception while enqueuing to capacity!");
 		}
@@ -74,7 +68,7 @@ class QueueTest {
 				el = queue.dequeue();
 				assertTrue(el == i, "Dequeued wrong value!");
 			}
-			assertTrue(queue.getCurrentSize() == 0, "Size is not zero after emptying queue!");
+			assertTrue(queue.isEmpty(), "Queue is not empty after emptying queue!");
 		} catch (UnderflowException e) {
 			fail("UnderflowException while dequeueuing to zero!");
 		} catch (Exception e) {
@@ -110,7 +104,7 @@ class QueueTest {
 		try {
 			queue.enqueue(values[currentElement++]);
 			queue.enqueue(values[currentElement++]);
-			assertTrue(queue.getCurrentSize() == queue.getMaxSize(), "Queue size not equal to max after filling to capacity again!");
+			assertTrue(queue.isFull(), "Queue is not full after filling to capacity again!");
 		} catch (Exception e) {
 			fail("Exception while filling up again!");
 		}

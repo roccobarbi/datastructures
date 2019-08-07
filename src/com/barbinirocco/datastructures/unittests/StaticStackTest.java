@@ -10,7 +10,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-class StackTest {
+class StaticStackTest {
 
 	@Test
 	void testConstruction() {
@@ -20,12 +20,6 @@ class StackTest {
 			stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		} catch (Exception e) {
 			fail("Exception while creating an integer Stack.");
-		}
-		try {
-			assertTrue(stack.getMaxSize() == size, "getMaxSize does not return the correct size!");
-			assertTrue(stack.getCurrentSize() == 0, "getCurrentSize does not return the correct size!");
-		} catch (Exception e) {
-			fail("Exception while getting sizes!");
 		}
 		try {
 			assertTrue(stack.isEmpty(), "Stack does not appear empty when it is!");
@@ -45,12 +39,6 @@ class StackTest {
 			stack.push(3);
 		} catch (Exception e) {
 			fail("Exception while pushing integers to the stack!");
-		}
-		try {
-			assertTrue(stack.getMaxSize() == size, "getMaxSize does not return the correct size!");
-			assertTrue(stack.getCurrentSize() == 3, "getCurrentSize does not return the correct size!");
-		} catch (Exception e) {
-			fail("Exception while getting sizes!");
 		}
 		try {
 			assertFalse(stack.isEmpty(), "Stack appears empty when it is not!");
