@@ -63,14 +63,16 @@ public class ResizableStack<T> implements Stack<T> {
 
 	@Override
 	public void push(T element) throws OverflowException {
-		// TODO Auto-generated method stub
-		
+		stack[currentSize++] = element;
+		checkResize();
 	}
 
 	@Override
 	public T pop() throws UnderflowException {
-		// TODO Auto-generated method stub
-		return null;
+		if (isEmpty()) throw new UnderflowException("Tried popping an empty stack!");
+		T output = stack[--currentSize];
+		checkResize();
+		return output;
 	}
 
 }
