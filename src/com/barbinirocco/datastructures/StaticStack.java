@@ -5,6 +5,7 @@ package com.barbinirocco.datastructures;
 
 import com.barbinirocco.datastructures.exceptions.OverflowException;
 import com.barbinirocco.datastructures.exceptions.UnderflowException;
+import com.barbinirocco.datastructures.interfaces.Stack;
 
 /**
  * Implements a non-resizable stack.
@@ -12,7 +13,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-public class StaticStack <T> {
+public class StaticStack <T> implements Stack<T> {
 	
 	private T[] stack;
 	private int maxSize;
