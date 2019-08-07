@@ -2,7 +2,7 @@ package com.barbinirocco.datastructures.unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.barbinirocco.datastructures.Stack;
+import com.barbinirocco.datastructures.StaticStack;
 import com.barbinirocco.datastructures.exceptions.OverflowException;
 import com.barbinirocco.datastructures.exceptions.UnderflowException;
 
@@ -15,9 +15,9 @@ class StackTest {
 	@Test
 	void testConstruction() {
 		int size = 20;
-		Stack<Integer> stack = null;
+		StaticStack<Integer> stack = null;
 		try {
-			stack = new Stack<Integer>(size, Integer.valueOf(1));
+			stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		} catch (Exception e) {
 			fail("Exception while creating an integer Stack.");
 		}
@@ -38,7 +38,7 @@ class StackTest {
 	@Test
 	void testPushing() {
 		int size = 20;
-		Stack<Integer> stack = new Stack<Integer>(size, Integer.valueOf(1));
+		StaticStack<Integer> stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		try {
 			stack.push(1);
 			stack.push(2);
@@ -63,7 +63,7 @@ class StackTest {
 	@Test
 	void testPopping() {
 		int size = 20;
-		Stack<Integer> stack = new Stack<Integer>(size, Integer.valueOf(1));
+		StaticStack<Integer> stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		try {
 		stack.push(1);
 		stack.push(2);
@@ -90,7 +90,7 @@ class StackTest {
 	@Test
 	void testExceptions() {
 		int size = 20;
-		Stack<Integer> stack = new Stack<Integer>(size, Integer.valueOf(1));
+		StaticStack<Integer> stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		try {
 			for (int i = 0; i < 21; i++) stack.push(i);
 			fail("Did not throw OverflowException when currentSize reached maxSize!");
@@ -99,7 +99,7 @@ class StackTest {
 		} catch (Exception e) {
 			fail("Exception (different from the expected OverflowException) while pushing!");
 		}
-		stack = new Stack<Integer>(size, Integer.valueOf(1));
+		stack = new StaticStack<Integer>(size, Integer.valueOf(1));
 		try {
 			stack.pop();
 			fail("Did not throw OverflowException when currentSize reached maxSize!");

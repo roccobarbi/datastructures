@@ -12,7 +12,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-public class Stack <T> {
+public class StaticStack <T> {
 	
 	private T[] stack;
 	private int maxSize;
@@ -26,7 +26,7 @@ public class Stack <T> {
 	 * @param sample An instance of the type that will be stored in the stack.
 	 */
 	@SuppressWarnings("unchecked")
-	public Stack (int size, T sample) {
+	public StaticStack (int size, T sample) {
 		this.maxSize = size;
 		this.currentSize = 0;
 		stack = (T[]) (new Object[size]);

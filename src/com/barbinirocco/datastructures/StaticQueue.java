@@ -12,7 +12,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-public class Queue <T> {
+public class StaticQueue <T> {
 	
 	private T[] queue;
 	private int head, tail,  maxSize, currentSize;
@@ -25,7 +25,7 @@ public class Queue <T> {
 	 * @param sample An instance of the type that will be stored in the queue.
 	 */
 	@SuppressWarnings("unchecked")
-	public Queue (int size, T sample) {
+	public StaticQueue (int size, T sample) {
 		this.maxSize = size;
 		this.currentSize = 0;
 		this.head = 0;

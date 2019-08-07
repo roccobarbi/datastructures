@@ -2,8 +2,7 @@ package com.barbinirocco.datastructures.unittests;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import com.barbinirocco.datastructures.Queue;
-import com.barbinirocco.datastructures.Stack;
+import com.barbinirocco.datastructures.StaticQueue;
 import com.barbinirocco.datastructures.exceptions.OverflowException;
 import com.barbinirocco.datastructures.exceptions.UnderflowException;
 
@@ -16,9 +15,9 @@ class QueueTest {
 	@Test
 	void testConstruction() {
 		int size = 20;
-		Queue<Integer> queue = null;
+		StaticQueue<Integer> queue = null;
 		try {
-			queue = new Queue<Integer>(size, Integer.valueOf(1));
+			queue = new StaticQueue<Integer>(size, Integer.valueOf(1));
 		} catch (Exception e) {
 			fail("Exception while creating an integer Queue.");
 		}
@@ -39,7 +38,7 @@ class QueueTest {
 	@Test
 	void testEnqueue() {
 		int size = 5;
-		Queue<Integer> queue = new Queue<Integer>(size, Integer.valueOf(1));
+		StaticQueue<Integer> queue = new StaticQueue<Integer>(size, Integer.valueOf(1));
 		try {
 			for(int i = 0; i < size; i++) {
 				queue.enqueue(i);
@@ -62,7 +61,7 @@ class QueueTest {
 	void testDeueue() {
 		int size = 5;
 		int el;
-		Queue<Integer> queue = new Queue<Integer>(size, Integer.valueOf(1));
+		StaticQueue<Integer> queue = new StaticQueue<Integer>(size, Integer.valueOf(1));
 		try {
 			for(int i = 0; i < size; i++) {
 				queue.enqueue(i);
@@ -96,7 +95,7 @@ class QueueTest {
 		int size = 5;
 		int[] values = {0, 1, 2, 3, 4, 5, 6};
 		int currentElement = 0, dequeued = -1, el;
-		Queue<Integer> queue = new Queue<Integer>(size, Integer.valueOf(1));
+		StaticQueue<Integer> queue = new StaticQueue<Integer>(size, Integer.valueOf(1));
 		try {
 			for(int i = 0; i < size; i++) {
 				queue.enqueue(values[currentElement++]);
