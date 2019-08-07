@@ -29,9 +29,9 @@ public class ResizableStack<T> implements Stack<T> {
 	}
 	
 	private void checkResize() {
-		if (currentSize > upperBound) {
+		if (currentSize >= upperBound) {
 			resizeStack(maxSize * 2);
-		} else if (currentSize < lowerBound) {
+		} else if (currentSize <= lowerBound) {
 			resizeStack((maxSize * 2) / 3);
 		}
 	}
