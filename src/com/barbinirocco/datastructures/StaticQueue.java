@@ -5,6 +5,7 @@ package com.barbinirocco.datastructures;
 
 import com.barbinirocco.datastructures.exceptions.OverflowException;
 import com.barbinirocco.datastructures.exceptions.UnderflowException;
+import com.barbinirocco.datastructures.interfaces.Queue;
 
 /**
  * Implements a queue.
@@ -12,7 +13,7 @@ import com.barbinirocco.datastructures.exceptions.UnderflowException;
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
-public class StaticQueue <T> {
+public class StaticQueue <T> implements Queue<T> {
 	
 	private T[] queue;
 	private int head, tail,  maxSize, currentSize;
@@ -33,22 +34,25 @@ public class StaticQueue <T> {
 		queue = (T[]) (new Object[size]);
 	}
 	
-	public int getMaxSize() {
+	private int getMaxSize() {
 		return maxSize;
 	}
 	
-	public int getCurrentSize() {
+	private int getCurrentSize() {
 		return currentSize;
 	}
 	
+	@Override
 	public boolean isEmpty() {
 		return getCurrentSize() == 0; 
 	}
 	
+	@Override
 	public boolean isFull() {
 		return getCurrentSize() == getMaxSize();
 	}
 	
+	@Override
 	public void enqueue(T element) throws OverflowException {
 		if(getCurrentSize() >= getMaxSize()) throw new OverflowException("Queue already filled to capacity!");
 		if(tail == getMaxSize()) tail = 0;
@@ -56,6 +60,7 @@ public class StaticQueue <T> {
 		currentSize++;
 	}
 	
+	@Override
 	public T dequeue() throws UnderflowException {
 		if (getCurrentSize() < 1) throw new UnderflowException("Queue already empty!");
 		currentSize--;

@@ -33,27 +33,31 @@ public class StaticStack <T> implements Stack<T> {
 		stack = (T[]) (new Object[size]);
 	}
 	
-	public int getMaxSize() {
+	private int getMaxSize() {
 		return maxSize;
 	}
 	
-	public int getCurrentSize() {
+	private int getCurrentSize() {
 		return currentSize;
 	}
 	
+	@Override
 	public boolean isEmpty() {
 		return getCurrentSize() == 0; 
 	}
 	
+	@Override
 	public boolean isFull() {
 		return getCurrentSize() == getMaxSize();
 	}
 	
+	@Override
 	public void push(T element) throws OverflowException {
 		if (isFull()) throw new OverflowException("Tried pushing a full stack!");
 		stack[currentSize++] = element;
 	}
 	
+	@Override
 	public T pop() throws UnderflowException {
 		if (isEmpty()) throw new UnderflowException("Tried popping an empty stack!");
 		return stack[--currentSize];
