@@ -3,6 +3,9 @@
  */
 package com.barbinirocco.datastructures.interfaces;
 
+import com.barbinirocco.datastructures.exceptions.UnderflowException;
+import com.barbinirocco.datastructures.exceptions.OverflowException;
+
 /**
  * Defines the basic operations of a Stack.
  * 
@@ -28,11 +31,12 @@ public interface Stack <T> {
 	 * 
 	 * @param Element
 	 */
-	public void push(T Element);
+	public void push(T element) throws OverflowException;
 	
 	/**
 	 * 
 	 * @return the last element added to the stack, which is removed from it.
+	 * @throws UnderflowException 
 	 */
-	public T pop();
+	public T pop() throws UnderflowException;
 }
