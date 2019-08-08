@@ -77,6 +77,11 @@ public class ResizingQueue<T> implements Queue<T> {
 		if(tail == maxSize) tail = 0;
 		queue[tail++] = element;
 		currentSize++;
+		try {
+			checkResize();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -85,7 +90,9 @@ public class ResizingQueue<T> implements Queue<T> {
 		if (currentSize < 1) throw new UnderflowException("Queue already empty!");
 		currentSize--;
 		if(head == maxSize) head = 0;
-		return queue[head++];
+		T output = queue[head++];
+		checkResize();
+		return output;
 	}
 
 }
