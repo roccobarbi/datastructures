@@ -14,14 +14,14 @@ import com.barbinirocco.datastructures.interfaces.Stack;
  * @param <T> the type contained in the stack
  *
  */
-public class ResizableStack<T> implements Stack<T> {
+public class ResizingStack<T> implements Stack<T> {
 	
 	private T[] stack;
 	private int lowerBound, upperBound, currentSize, maxSize;
 	private static final int minSize = 10;
 	
 	@SuppressWarnings("unchecked")
-	public ResizableStack (int size, T sample) {
+	public ResizingStack (int size, T sample) {
 		this.maxSize = size >= minSize ? size : minSize;
 		this.currentSize = 0;
 		this.stack = (T[]) (new Object[size]);
