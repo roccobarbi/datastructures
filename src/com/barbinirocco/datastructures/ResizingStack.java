@@ -24,7 +24,7 @@ public class ResizingStack<T> implements Stack<T> {
 	public ResizingStack (int size, T sample) {
 		this.maxSize = size >= minSize ? size : minSize;
 		this.currentSize = 0;
-		this.stack = (T[]) (new Object[size]);
+		this.stack = (T[]) (new Object[maxSize]);
 		calculateBounds();
 	}
 	
@@ -44,6 +44,7 @@ public class ResizingStack<T> implements Stack<T> {
 			resizedStack[i] = stack[i];
 		}
 		stack = resizedStack;
+		calculateBounds();
 	}
 	
 	private void calculateBounds() {
