@@ -32,6 +32,13 @@ public class ResizingQueue<T> implements Queue<T> {
 		lowerBound = maxSize >= minSize * 2 ? this.maxSize / 2 : -1;
 		upperBound = (this.maxSize * 9) / 10;
 	}
+	
+	private T staticDequeue() throws UnderflowException {
+		if (currentSize < 1) throw new UnderflowException("Queue already empty!");
+		currentSize--;
+		if(head == maxSize) head = 0;
+		return queue[head++];
+	}
 
 	@Override
 	public boolean isEmpty() {
