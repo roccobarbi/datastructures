@@ -18,6 +18,7 @@ public class ResizingQueue<T> implements Queue<T> {
 	private int head, tail,  maxSize, currentSize, upperBound, lowerBound;
 	private static final int minSize = 10;
 	
+	@SuppressWarnings("unchecked")
 	public ResizingQueue(int size, T sample) {
 		this.maxSize = size >= minSize ? size : minSize;
 		this.currentSize = 0;
@@ -44,14 +45,19 @@ public class ResizingQueue<T> implements Queue<T> {
 
 	@Override
 	public void enqueue(T element) throws OverflowException {
-		// TODO Auto-generated method stub
+		if(currentSize >= maxSize) throw new OverflowException("Queue already filled to capacity!");
+		if(tail == maxSize) tail = 0;
+		queue[tail++] = element;
+		currentSize++;
 		
 	}
 
 	@Override
 	public T dequeue() throws UnderflowException {
-		// TODO Auto-generated method stub
-		return null;
+		if (currentSize < 1) throw new UnderflowException("Queue already empty!");
+		currentSize--;
+		if(head == maxSize) head = 0;
+		return queue[head++];
 	}
 
 }
