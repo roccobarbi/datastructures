@@ -33,6 +33,7 @@ public class ResizingQueue<T> implements Queue<T> {
 		upperBound = (this.maxSize * 9) / 10;
 	}
 	
+	// avoids resizing overhead when dequeueing elements to fill resized queue
 	private T staticDequeue() throws UnderflowException {
 		if (currentSize < 1) throw new UnderflowException("Queue already empty!");
 		currentSize--;
