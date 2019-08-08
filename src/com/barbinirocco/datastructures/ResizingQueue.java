@@ -28,6 +28,26 @@ public class ResizingQueue<T> implements Queue<T> {
 		calculateBounds();
 	}
 	
+	private void checkResize() throws UnderflowException {
+		if (currentSize >= upperBound) {
+			resizeQueue(maxSize * 2);
+		} else if (currentSize <= lowerBound) {
+			resizeQueue((maxSize * 2) / 3);
+		}
+	}
+	
+	// Each time the queue is resized, the head is set at index 0.
+	private void resizeQueue(int size) throws UnderflowException {
+		this.maxSize = size >= minSize ? size : minSize;
+		@SuppressWarnings("unchecked")
+		T[] resizedQueue = (T[]) (new Object[this.maxSize]);
+		for (int i = 0; i < currentSize; i++) {
+			resizedQueue[i] = staticDequeue();
+		}
+		queue = resizedQueue;
+		calculateBounds();
+	}
+	
 	private void calculateBounds() {
 		lowerBound = maxSize >= minSize * 2 ? this.maxSize / 2 : -1;
 		upperBound = (this.maxSize * 9) / 10;
