@@ -65,7 +65,9 @@ public class StaticQueue <T> implements Queue<T> {
 		if (getCurrentSize() < 1) throw new UnderflowException("Queue already empty!");
 		currentSize--;
 		if(head == getMaxSize()) head = 0;
-		return queue[head++];
+		T output = queue[head++];
+		queue[head - 1] = null;
+		return output;
 	}
 
 }

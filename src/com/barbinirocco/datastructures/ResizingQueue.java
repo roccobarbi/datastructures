@@ -91,6 +91,7 @@ public class ResizingQueue<T> implements Queue<T> {
 		currentSize--;
 		if(head == maxSize) head = 0;
 		T output = queue[head++];
+		queue[head - 1] = null;
 		checkResize();
 		return output;
 	}

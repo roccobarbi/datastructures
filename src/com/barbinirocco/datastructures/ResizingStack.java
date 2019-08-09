@@ -72,6 +72,7 @@ public class ResizingStack<T> implements Stack<T> {
 	public T pop() throws UnderflowException {
 		if (isEmpty()) throw new UnderflowException("Tried popping an empty stack!");
 		T output = stack[--currentSize];
+		stack[currentSize] = null;
 		checkResize();
 		return output;
 	}

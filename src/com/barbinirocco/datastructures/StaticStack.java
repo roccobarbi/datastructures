@@ -60,7 +60,9 @@ public class StaticStack <T> implements Stack<T> {
 	@Override
 	public T pop() throws UnderflowException {
 		if (isEmpty()) throw new UnderflowException("Tried popping an empty stack!");
-		return stack[--currentSize];
+		T output = stack[--currentSize];
+		stack[currentSize] = null;
+		return output;
 	}
 
 }
