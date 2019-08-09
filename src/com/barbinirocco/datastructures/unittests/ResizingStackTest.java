@@ -11,6 +11,7 @@ class ResizingStackTest {
 	@Test
 	void testConstruction() {
 		int size = 5;
+		@SuppressWarnings("unused")
 		ResizingStack<Integer> stack = null;
 		try {
 			stack = new ResizingStack<Integer>(size, Integer.valueOf(1));

@@ -12,6 +12,7 @@ class ResizingQueueTest {
 	@Test
 	void testConstruction() {
 		int size = 5;
+		@SuppressWarnings("unused")
 		ResizingQueue<Integer> queue = null;
 		try {
 			queue = new ResizingQueue<Integer>(size, Integer.valueOf(1));
