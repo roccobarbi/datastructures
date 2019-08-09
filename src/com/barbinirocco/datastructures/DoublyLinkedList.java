@@ -46,8 +46,15 @@ public class DoublyLinkedList<K, V> implements LinkedList<K, V> {
 
 	@Override
 	public V delete(K key) {
-		// TODO Auto-generated method stub
-		return null;
+		Node<K, V> current = nil;
+		V output = null;
+		do {
+			current = current.getNext();
+		} while (current != nil && !current.getKey().equals(key));
+		output = current.getValue();
+		current.getPrev().setNext(current.getNext());
+		current.getNext().setPrev(current.getPrev());
+		return output;
 	}
 	
 	@SuppressWarnings("hiding")
