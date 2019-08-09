@@ -38,13 +38,14 @@ public class ResizingQueue<T> implements Queue<T> {
 	
 	// Each time the queue is resized, the head is set at index 0.
 	private void resizeQueue(int size) throws UnderflowException {
-		this.maxSize = size >= minSize ? size : minSize;
+		int maxSize = size >= minSize ? size : minSize;
 		@SuppressWarnings("unchecked")
-		T[] resizedQueue = (T[]) (new Object[this.maxSize]);
+		T[] resizedQueue = (T[]) (new Object[maxSize]);
 		for (int i = 0; i < currentSize; i++) {
 			resizedQueue[i] = staticDequeue();
 		}
 		queue = resizedQueue;
+		this.maxSize = maxSize;
 		calculateBounds();
 	}
 	
