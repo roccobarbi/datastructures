@@ -49,7 +49,7 @@ public class ResizingQueue<T> implements Queue<T> {
 		this.maxSize = maxSize;
 		this.currentSize = currentSize;
 		this.head = 0;
-		this.tail = currentSize - 1;
+		this.tail = currentSize;
 		calculateBounds();
 	}
 	
