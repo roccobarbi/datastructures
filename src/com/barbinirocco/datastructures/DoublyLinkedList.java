@@ -37,8 +37,11 @@ public class DoublyLinkedList<K, V> implements LinkedList<K, V> {
 
 	@Override
 	public V search(K key) {
-		// TODO Auto-generated method stub
-		return null;
+		Node<K, V> current = nil;
+		do {
+			current = current.getNext();
+		} while (current != nil && !current.getKey().equals(key));
+		return current.getValue();
 	}
 
 	@Override

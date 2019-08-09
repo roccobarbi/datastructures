@@ -31,7 +31,7 @@ public interface LinkedList<K, V> {
 	 * Searches the list for the first value associated to a key, without removing it from the list.
 	 * 
 	 * @param key the key to be searched
-	 * @return a pointer to the value
+	 * @return a pointer to the value, or null
 	 */
 	public V search(K key);
 	
@@ -39,7 +39,7 @@ public interface LinkedList<K, V> {
 	 * Searches the list for the first value associated to a key and removes it from the list.
 	 * 
 	 * @param key the key to be deleted
-	 * @return a pointer to the value that was removed from the list
+	 * @return a pointer to the value that was removed from the list, or null
 	 */
 	public V delete(K key);
 	
