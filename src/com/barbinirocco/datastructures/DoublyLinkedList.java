@@ -32,6 +32,7 @@ public class DoublyLinkedList<K, V> implements LinkedList<K, V> {
 		Node<K, V> node = new Node<K, V>(key, value);
 		node.setPrev(nil.getPrev());
 		node.setNext(nil);
+		nil.getPrev().setNext(node);
 		nil.setPrev(node);
 	}
 
