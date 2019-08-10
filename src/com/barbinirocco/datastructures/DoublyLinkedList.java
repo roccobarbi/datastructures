@@ -53,8 +53,10 @@ public class DoublyLinkedList<K, V> implements LinkedList<K, V> {
 			current = current.getNext();
 		} while (current != nil && !current.getKey().equals(key));
 		output = current.getValue();
-		current.getPrev().setNext(current.getNext());
-		current.getNext().setPrev(current.getPrev());
+		if (current != nil) {
+			current.getPrev().setNext(current.getNext());
+			current.getNext().setPrev(current.getPrev());
+		}
 		return output;
 	}
 	
