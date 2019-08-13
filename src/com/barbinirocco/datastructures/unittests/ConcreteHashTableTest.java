@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author roccobarbini
+ * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
 class ConcreteHashTableTest {

@@ -6,7 +6,7 @@ package com.barbinirocco.datastructures;
 import com.barbinirocco.datastructures.interfaces.HashTable;
 
 /**
- * @author roccobarbini
+ * @author rocco barbini (roccobarbi@gmail.com)
  * @param <K> the type for the key
  * @param <V> the type for the value
  *
