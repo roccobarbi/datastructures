@@ -15,7 +15,7 @@ import com.barbinirocco.datastructures.interfaces.HashTable;
 public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
-	public void insert(K key, V value) {
+	public void insert(K key, V value) throws NullKeyException {
 		// TODO Auto-generated method stub
 		
 	}

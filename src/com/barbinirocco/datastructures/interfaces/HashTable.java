@@ -3,6 +3,8 @@
  */
 package com.barbinirocco.datastructures.interfaces;
 
+import com.barbinirocco.datastructures.exceptions.NullKeyException;
+
 /**
  * Defines the basic operations for a hash table of key-value pairs.
  * 
@@ -17,7 +19,7 @@ public interface HashTable <K, V> {
 	 * @param key
 	 * @param value
 	 */
-	public void insert(K key, V value);
+	public void insert(K key, V value) throws NullKeyException;
 	
 	/**
 	 * Searches for a key-value pair in the hash table.
