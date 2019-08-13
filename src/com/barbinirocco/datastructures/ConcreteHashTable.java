@@ -13,6 +13,13 @@ import com.barbinirocco.datastructures.interfaces.HashTable;
  *
  */
 public class ConcreteHashTable<K, V> implements HashTable<K, V> {
+	
+	private static final int minSize = 31;
+	private Pair[] table;
+	
+	public ConcreteHashTable(K keySample, V valueSample) {
+		this.table = new Pair[minSize];
+	}
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
