@@ -14,15 +14,14 @@ import com.barbinirocco.datastructures.interfaces.HashTable;
  */
 public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
-	private static final int minSize = 31;
 	private static final int primeSizes[] = { 31, 61, 127, 257, 547, 1031, 2053,
 			4093, 8191, 16411, 32707, 65579, 131071, 262147, 524287, 1048583, 2097169,
 			4194713, 8388617, 16777259, 33554467, 67108879, 134217757, 268435459, 536870923,
-			1073748019, 2147438987 };
+			1073748019, 2147438987 }; // To be used for resizing the table
 	private Pair[] table;
 
 	public ConcreteHashTable(K keySample, V valueSample) {
-		this.table = new Pair[minSize];
+		this.table = new Pair[primeSizes[0]];
 	}
 
 	@Override
