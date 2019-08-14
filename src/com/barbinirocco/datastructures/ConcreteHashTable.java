@@ -26,8 +26,12 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
-		// TODO Auto-generated method stub
-
+		Pair pair;
+		try {
+			pair = new Pair(key, value);
+		} catch (NullKeyException e) {
+			throw new NullKeyException(e.getMessage());
+		}
 	}
 
 	@Override
