@@ -19,8 +19,11 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			4194713, 8388617, 16777259, 33554467, 67108879, 134217757, 268435459, 536870923,
 			1073748019, 2147438987 }; // To be used for resizing the table
 	private Pair[] table;
+	private int currentSize, currentPrime;
 
 	public ConcreteHashTable(K keySample, V valueSample) {
+		this.currentPrime = 0;
+		this.currentSize = 0;
 		this.table = new Pair[primeSizes[0]];
 	}
 
@@ -32,6 +35,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		} catch (NullKeyException e) {
 			throw new NullKeyException(e.getMessage());
 		}
+		int position = key.hashCode() % primeSizes[currentPrime];
 	}
 
 	@Override
