@@ -37,7 +37,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		} catch (NullKeyException e) {
 			throw new NullKeyException(e.getMessage());
 		}
-		int position = key.hashCode() % primeSizes[currentPrime];
+		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
 		if (table[position] != null) {
 			pair.setNext(table[position]);
 			table[position].setPrev(pair);
