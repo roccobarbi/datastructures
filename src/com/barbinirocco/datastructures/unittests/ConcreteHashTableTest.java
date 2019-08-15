@@ -75,7 +75,7 @@ class ConcreteHashTableTest {
 			table.insert(null, 0);
 			fail("NullKeyException not thrown when inserting null key!");
 		} catch (NullKeyException e) {
-			e.printStackTrace();
+			// pass
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Wrong exception thrown when inserting null key!!");
