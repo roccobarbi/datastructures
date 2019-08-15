@@ -21,6 +21,7 @@ class ConcreteHashTableTest {
 	@Test
 	void testConstructor() {
 		try {
+			@SuppressWarnings("unused")
 			HashTable<String, Integer> table = new ConcreteHashTable<String, Integer>("", Integer.valueOf(1));
 		} catch (Exception e) {
 			e.printStackTrace();
