@@ -24,7 +24,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	public ConcreteHashTable(K keySample, V valueSample) {
 		this.currentPrime = 0;
 		this.currentSize = 0;
-		this.table = new Pair[primeSizes[0]];
+		this.table = new ConcreteHashTable.Pair[primeSizes[0]];
 	}
 
 	@Override
@@ -50,15 +50,18 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		return null;
 	}
 
-	private class Pair<K, V> {
+	private class Pair {
 		private K key;
 		private V value;
+		private Pair prev, next;
 
 		public Pair(K key, V value) throws NullKeyException {
 			if (key == null)
 				throw new NullKeyException();
 			this.key = key;
 			this.value = value;
+			this.prev = null;
+			this.next = null;
 		}
 
 		@Override
@@ -78,6 +81,34 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		 */
 		public V getValue() {
 			return value;
+		}
+
+		/**
+		 * @return the prev
+		 */
+		public Pair getPrev() {
+			return prev;
+		}
+
+		/**
+		 * @param prev the prev to set
+		 */
+		public void setPrev(Pair prev) {
+			this.prev = prev;
+		}
+
+		/**
+		 * @return the next
+		 */
+		public Pair getNext() {
+			return next;
+		}
+
+		/**
+		 * @param next the next to set
+		 */
+		public void setNext(Pair next) {
+			this.next = next;
 		}
 
 	}
