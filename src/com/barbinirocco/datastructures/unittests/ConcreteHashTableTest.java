@@ -54,6 +54,7 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Exception while inserting valid key and null value!");
 		}
+		assertTrue(table.search("ciccio") == 0, "Inserting a new key-value pair deleted other key-value pairs!");
 		try {
 			table.insert("ciccio", 0);
 		} catch (NullKeyException e) {
@@ -72,6 +73,7 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Exception while inserting valid key a third time with different value!");
 		}
+		assertTrue(table.search("ciccio") == 1, "The last insert did not overwrite the value for the key!");
 		try {
 			table.insert(null, 0);
 			fail("NullKeyException not thrown when inserting null key!");
@@ -81,7 +83,6 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Wrong exception thrown when inserting null key!!");
 		}
-		assertTrue(table.search("ciccio") == 1, "The last insert did not overwrite the value for the key!");
 	}
 
 	/**
@@ -89,7 +90,38 @@ class ConcreteHashTableTest {
 	 */
 	@Test
 	void testSearch() {
-		fail("Not yet implemented"); // TODO
+		HashTable<String, Integer> table = new ConcreteHashTable<String, Integer>("", Integer.valueOf(1));
+		try {
+			table.insert("ciccio", 0);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			assertTrue(table.search("ciccio") == 0, "Existing key not found!");
+		} catch (Exception e) {
+			fail("Exception while searching!");
+		}
+		try {
+			table.insert("ciccio", 1);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			assertTrue(table.search("ciccio") == 1, "Existing key not found!");
+		} catch (Exception e) {
+			fail("Exception while searching!");
+		}
+		try {
+			table.insert("ciccio", 1);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			assertTrue(table.search(null) == null, "Searching for a null key did not return a null value!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while searching for a null key!");
+		}
 	}
 
 	/**
