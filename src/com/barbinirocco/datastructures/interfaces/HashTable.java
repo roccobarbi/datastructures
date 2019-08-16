@@ -8,6 +8,9 @@ import com.barbinirocco.datastructures.exceptions.NullKeyException;
 /**
  * Defines the basic operations for a hash table of key-value pairs.
  * 
+ * There must be only one instance of the same key. If the same key is inserted more than once, each new insert operation
+ * should replace the existing value.
+ * 
  * @author rocco barbini (roccobarbi@gmail.com)
  *
  */
