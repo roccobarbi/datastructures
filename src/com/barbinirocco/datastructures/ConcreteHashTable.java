@@ -59,10 +59,12 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public V search(K key) {
-		Pair pair = findKey(key);
 		V output = null;
-		if (pair != null)
-			output = pair.getValue();
+		if (key != null) {
+			Pair pair = findKey(key);
+			if (pair != null)
+				output = pair.getValue();
+		}
 		return output;
 	}
 
