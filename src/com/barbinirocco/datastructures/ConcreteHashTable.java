@@ -40,12 +40,10 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
+		if (key == null)
+			throw new NullKeyException();
 		Pair pair, existingInstance = findKey(key);
-		try {
-			pair = new Pair(key, value);
-		} catch (NullKeyException e) {
-			throw new NullKeyException(e.getMessage());
-		}
+		pair = new Pair(key, value);
 		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
 		if (existingInstance == null) {
 			if (table[position] != null) {
@@ -88,9 +86,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		private V value;
 		private Pair prev, next;
 
-		public Pair(K key, V value) throws NullKeyException {
-			if (key == null)
-				throw new NullKeyException();
+		public Pair(K key, V value) {
 			this.key = key;
 			this.value = value;
 			this.prev = null;
