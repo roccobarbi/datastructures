@@ -44,6 +44,7 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Exception while inserting valid key and valid value!");
 		}
+		assertTrue(table.search("ciccio") == 0, "Inserting a key-value pair did not store it!");
 		try {
 			table.insert("pasticcio", null);
 		} catch (NullKeyException e) {
@@ -80,6 +81,7 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Wrong exception thrown when inserting null key!!");
 		}
+		assertTrue(table.search("ciccio") == 1, "The last insert did not overwrite the value for the key!");
 	}
 
 	/**
