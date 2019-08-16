@@ -28,22 +28,35 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		this.table = new ConcreteHashTable.Pair[primeSizes[0]];
 		this.maxLoad = (int) (0.9 * currentPrime);
 	}
+	
+	private Pair findKey(K key) {
+		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
+		Pair output = table[position];
+		while (output != null && !output.getKey().equals(key)) {
+			output = output.getNext();
+		}
+		return output;
+	}
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
-		Pair pair;
+		Pair pair, existingInstance = findKey(key);
 		try {
 			pair = new Pair(key, value);
 		} catch (NullKeyException e) {
 			throw new NullKeyException(e.getMessage());
 		}
 		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
-		if (table[position] != null) {
-			pair.setNext(table[position]);
-			table[position].setPrev(pair);
+		if (existingInstance == null) {
+			if (table[position] != null) {
+				pair.setNext(table[position]);
+				table[position].setPrev(pair);
+			}
+			table[position] = pair;
+			currentSize++;
+		} else {
+			existingInstance.setValue(value);
 		}
-		table[position] = pair;
-		currentSize++;
 	}
 
 	@Override
@@ -89,6 +102,13 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		 */
 		public V getValue() {
 			return value;
+		}
+		
+		/**
+		 * @param value the value to set
+		 */
+		public void setValue(V value) {
+			this.value = value;
 		}
 
 		/**
