@@ -30,10 +30,13 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	}
 	
 	private Pair findKey(K key) {
-		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
-		Pair output = table[position];
-		while (output != null && !output.getKey().equals(key)) {
-			output = output.getNext();
+		Pair output = null;
+		if (key != null) {
+			int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
+			output = table[position];
+			while (output != null && !output.getKey().equals(key)) {
+				output = output.getNext();
+			}
 		}
 		return output;
 	}
