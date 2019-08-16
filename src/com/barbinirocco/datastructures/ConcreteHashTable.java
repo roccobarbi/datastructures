@@ -70,8 +70,17 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public V delete(K key) {
-		// TODO Auto-generated method stub
-		return null;
+		Pair pair = findKey(key);
+		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
+		V output = null;
+		if (pair != null) {
+			output = pair.getValue();
+			if (pair.getPrev() == null)
+				table[position] = pair.getNext();
+			if (pair.getNext() != null)
+				pair.getNext().setPrev(pair.getPrev());
+		}
+		return output;
 	}
 
 	private class Pair {
