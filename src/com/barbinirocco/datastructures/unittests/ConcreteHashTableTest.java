@@ -112,11 +112,6 @@ class ConcreteHashTableTest {
 			fail("Exception while searching!");
 		}
 		try {
-			table.insert("ciccio", 1);
-		} catch (NullKeyException e) {
-			e.printStackTrace();
-		}
-		try {
 			assertTrue(table.search(null) == null, "Searching for a null key did not return a null value!");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,7 +124,41 @@ class ConcreteHashTableTest {
 	 */
 	@Test
 	void testDelete() {
-		fail("Not yet implemented"); // TODO
+		HashTable<String, Integer> table = new ConcreteHashTable<String, Integer>("", Integer.valueOf(1));
+		try {
+			table.insert("ciccio", 0);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			table.insert("ciccio", 1);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			assertTrue(table.delete("ciccio") == 1, "Existing key not found!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while deleting!");
+		}
+		assertTrue(table.search("ciccio") == null, "Deleted key found again by search!");
+		try {
+			assertTrue(table.delete("ciccio") == null, "Deleted key found again by delete!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while deleting the second time!");
+		}
+		try {
+			table.insert("ciccio", 0);
+		} catch (NullKeyException e) {
+			e.printStackTrace();
+		}
+		try {
+			assertTrue(table.delete(null) == null, "Trying to delete a null key did not return a null value!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception while deleting a null key!");
+		}
 	}
 
 }
