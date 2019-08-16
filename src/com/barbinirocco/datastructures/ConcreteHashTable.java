@@ -72,9 +72,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	@Override
 	public V delete(K key) {
 		Pair pair = findKey(key);
-		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
 		V output = null;
 		if (pair != null) {
+			int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
 			output = pair.getValue();
 			if (pair.getPrev() == null)
 				table[position] = pair.getNext();
