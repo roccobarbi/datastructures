@@ -21,11 +21,17 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	private Pair[] table;
 	private int currentSize, currentPrime, maxLoad;
 
-	@SuppressWarnings("unchecked")
 	public ConcreteHashTable(K keySample, V valueSample) {
+		this(keySample, valueSample, primeSizes[0]);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ConcreteHashTable(K keySample, V valueSample, int minSize) {
 		this.currentPrime = 0;
+		while (primeSizes[this.currentPrime] < minSize && this.currentPrime < (primeSizes.length - 1))
+			this.currentPrime++;
 		this.currentSize = 0;
-		this.table = new ConcreteHashTable.Pair[primeSizes[0]];
+		this.table = new ConcreteHashTable.Pair[primeSizes[this.currentPrime]];
 		this.maxLoad = (int) (0.9 * currentPrime);
 	}
 	
@@ -40,6 +46,10 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		}
 		return output;
 	}
+	
+	private void resize(int primeIndex) {
+		//
+	};
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
@@ -57,6 +67,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			currentSize++;
 		} else {
 			existingInstance.setValue(value);
+		}
+		if (currentSize > maxLoad && currentPrime < (primeSizes.length - 1)) {
+			resize(currentPrime + 1);
 		}
 	}
 
