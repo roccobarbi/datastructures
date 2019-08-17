@@ -32,8 +32,8 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			this.currentPrime++;
 		this.currentSize = 0;
 		this.table = new ConcreteHashTable.Pair[primeSizes[this.currentPrime]];
-		this.maxLoad = (int) (0.9 * currentPrime);
-		this.minLoad = (int) (0.5 * currentPrime);
+		this.maxLoad = (int) (0.9 * primeSizes[this.currentPrime]);
+		this.minLoad = (int) (0.5 * primeSizes[this.currentPrime]);
 	}
 	
 	private Pair findKey(K key, Pair[] table) {
@@ -52,10 +52,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	private void resize(int primeIndex) {
 		Pair[] table = new ConcreteHashTable.Pair[primeSizes[primeIndex]];
 		for (Pair p: this.table) {
-			Pair pair = p;
-			while (pair != null) {
-				innerInsert(pair.getKey(), pair.getValue(), table, primeIndex);
-				pair = pair.getNext();
+			while (p != null) {
+				innerInsert(p.getKey(), p.getValue(), table, primeIndex);
+				p = p.getNext();
 			}
 		}
 		this.currentPrime = primeIndex;
