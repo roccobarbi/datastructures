@@ -58,11 +58,22 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			}
 		}
 		this.currentPrime = primeIndex;
+		this.maxLoad = (int) (0.9 * primeSizes[this.currentPrime]);
+		this.minLoad = (int) (0.5 * primeSizes[this.currentPrime]);
 		this.table = table;
 	};
 	
-	private void innerInsert(K key, V value, Pair[] table, int primeIndex) {
+	/**
+	 * 
+	 * @param key the key to be inserted
+	 * @param value the value to be inserted
+	 * @param table the table into which the key-value pair should be inserted
+	 * @param primeIndex the index of the prime number associated to the current size
+	 * @return the amount by which the current size changes
+	 */
+	private int innerInsert(K key, V value, Pair[] table, int primeIndex) {
 		Pair pair, existingInstance = findKey(key, table);
+		int sizeChange = 0;
 		pair = new Pair(key, value);
 		int position = Math.abs(key.hashCode() % primeSizes[primeIndex]);
 		if (existingInstance == null) {
@@ -71,17 +82,18 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 				table[position].setPrev(pair);
 			}
 			table[position] = pair;
-			currentSize++;
+			sizeChange++;
 		} else {
 			existingInstance.setValue(value);
 		}
+		return sizeChange;
 	}
 
 	@Override
 	public void insert(K key, V value) throws NullKeyException {
 		if (key == null)
 			throw new NullKeyException();
-		innerInsert(key, value, table, currentPrime);
+		currentSize += innerInsert(key, value, table, currentPrime);
 		if (currentSize > maxLoad && currentPrime < (primeSizes.length - 1)) {
 			resize(currentPrime + 1);
 		}
