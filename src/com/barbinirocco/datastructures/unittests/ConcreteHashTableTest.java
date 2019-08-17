@@ -177,6 +177,21 @@ class ConcreteHashTableTest {
 			e.printStackTrace();
 			fail("Exception while deleting a null key!");
 		}
+		for (int i = 0; i < 1024; i++) {
+			try {
+				table.insert(Integer.toString(i), i);
+			} catch (NullKeyException e) {
+				e.printStackTrace();
+			}
+		}
+		for (int i = 1023; i >= 0; i--) {
+			try {
+				assertTrue(table.delete(Integer.toString(i)) == i, "Existing key not found during resize test!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				fail("Exception while deleting during resize test!");
+			}
+		}
 	}
 
 }
