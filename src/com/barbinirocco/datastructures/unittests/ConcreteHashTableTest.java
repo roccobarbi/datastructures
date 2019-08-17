@@ -25,7 +25,14 @@ class ConcreteHashTableTest {
 			HashTable<String, Integer> table = new ConcreteHashTable<String, Integer>("", Integer.valueOf(1));
 		} catch (Exception e) {
 			e.printStackTrace();
-			fail("Exception during construction!");
+			fail("Exception during construction without minSize!");
+		}
+		try {
+			@SuppressWarnings("unused")
+			HashTable<String, Integer> table = new ConcreteHashTable<String, Integer>("", Integer.valueOf(1), 64);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Exception during construction with minSize!");
 		}
 	}
 	
@@ -82,6 +89,17 @@ class ConcreteHashTableTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Wrong exception thrown when inserting null key!!");
+		}
+		for (int i = 0; i < 1024; i++) {
+			try {
+				table.insert(Integer.toString(i), i);
+			} catch (NullKeyException e) {
+				e.printStackTrace();
+				fail("NullKeyException while inserting valid key during resize testing!");
+			} catch (Exception e) {
+				e.printStackTrace();
+				fail("Exception while inserting valid key during resize testing!");
+			}
 		}
 	}
 
