@@ -85,8 +85,6 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		innerInsert(key, value, table, currentPrime);
 		if (currentSize > maxLoad && currentPrime < (primeSizes.length - 1)) {
 			resize(currentPrime + 1);
-		} else if (currentPrime > 0 && currentSize < minLoad) {
-			resize(currentPrime - 1);
 		}
 	}
 
@@ -110,6 +108,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 				table[position] = pair.getNext();
 			if (pair.getNext() != null)
 				pair.getNext().setPrev(pair.getPrev());
+		}
+		if (currentPrime > 0 && currentSize < minLoad) {
+			resize(currentPrime - 1);
 		}
 		return output;
 	}
