@@ -35,7 +35,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		this.maxLoad = (int) (0.9 * currentPrime);
 	}
 	
-	private Pair findKey(K key) {
+	private Pair findKey(K key, Pair[] table) {
 		Pair output = null;
 		if (key != null) {
 			int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
@@ -47,17 +47,24 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		return output;
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void resize(int primeIndex) {
-		//
+		Pair[] table = new ConcreteHashTable.Pair[primeSizes[primeIndex]];
+		for (Pair p: this.table) {
+			Pair pair = p;
+			while (pair != null) {
+				innerInsert(pair.getKey(), pair.getValue(), table, primeIndex);
+				pair = pair.getNext();
+			}
+		}
+		this.currentPrime = primeIndex;
+		this.table = table;
 	};
-
-	@Override
-	public void insert(K key, V value) throws NullKeyException {
-		if (key == null)
-			throw new NullKeyException();
-		Pair pair, existingInstance = findKey(key);
+	
+	private void innerInsert(K key, V value, Pair[] table, int primeIndex) {
+		Pair pair, existingInstance = findKey(key, table);
 		pair = new Pair(key, value);
-		int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
+		int position = Math.abs(key.hashCode() % primeSizes[primeIndex]);
 		if (existingInstance == null) {
 			if (table[position] != null) {
 				pair.setNext(table[position]);
@@ -68,6 +75,13 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		} else {
 			existingInstance.setValue(value);
 		}
+	}
+
+	@Override
+	public void insert(K key, V value) throws NullKeyException {
+		if (key == null)
+			throw new NullKeyException();
+		innerInsert(key, value, table, currentPrime);
 		if (currentSize > maxLoad && currentPrime < (primeSizes.length - 1)) {
 			resize(currentPrime + 1);
 		}
@@ -76,7 +90,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	@Override
 	public V search(K key) {
 		V output = null;
-		Pair pair = findKey(key);
+		Pair pair = findKey(key, table);
 		if (pair != null)
 			output = pair.getValue();
 		return output;
@@ -84,7 +98,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 
 	@Override
 	public V delete(K key) {
-		Pair pair = findKey(key);
+		Pair pair = findKey(key, table);
 		V output = null;
 		if (pair != null) {
 			int position = Math.abs(key.hashCode() % primeSizes[currentPrime]);
