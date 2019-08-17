@@ -19,7 +19,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			4194713, 8388617, 16777259, 33554467, 67108879, 134217757, 268435459, 536870923,
 			1073748019, 2147438987 }; // To be used for resizing the table
 	private Pair[] table;
-	private int currentSize, currentPrime, maxLoad;
+	private int currentSize, currentPrime, maxLoad, minLoad;
 
 	public ConcreteHashTable(K keySample, V valueSample) {
 		this(keySample, valueSample, primeSizes[0]);
@@ -33,6 +33,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		this.currentSize = 0;
 		this.table = new ConcreteHashTable.Pair[primeSizes[this.currentPrime]];
 		this.maxLoad = (int) (0.9 * currentPrime);
+		this.minLoad = (int) (0.5 * currentPrime);
 	}
 	
 	private Pair findKey(K key, Pair[] table) {
@@ -84,6 +85,8 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		innerInsert(key, value, table, currentPrime);
 		if (currentSize > maxLoad && currentPrime < (primeSizes.length - 1)) {
 			resize(currentPrime + 1);
+		} else if (currentPrime > 0 && currentSize < minLoad) {
+			resize(currentPrime - 1);
 		}
 	}
 
