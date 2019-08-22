@@ -19,12 +19,12 @@ public class BenchmarkTest {
 	private static void printResultsSingleTest(int testSize, long timeAccumulator, long minTime, long maxTime) {
 		System.out.print(">> ");
 		System.out.print(testSize);
-		System.out.println(" elements pushed <<");
-		System.out.print("Min push time (ns): ");
+		System.out.println(" elements added <<");
+		System.out.print("Min add time (ns): ");
 		System.out.println(minTime);
-		System.out.print("Average push time (ns): ");
+		System.out.print("Average add time (ns): ");
 		System.out.println(timeAccumulator / testSize);
-		System.out.print("Max push time (ns): ");
+		System.out.print("Max add time (ns): ");
 		System.out.println(maxTime);
 	}
 	
