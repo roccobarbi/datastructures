@@ -63,7 +63,7 @@ public class BenchmarkTest {
 				maxTime = Long.max(maxTime, curTime);
 			}   catch (Error e) {
 				System.out.println("Exception encountered: " + e.getMessage());
-				System.out.printf("Exception caused by index: %-,d\n", i);
+				System.out.printf("Exception caused by index: %,d\n", i);
 				testError = true;
 				break;
 			}
@@ -99,7 +99,7 @@ public class BenchmarkTest {
 				maxTime = Long.max(maxTime, curTime);
 			}  catch (Error e) {
 				System.out.println("Exception encountered: " + e.getMessage());
-				System.out.printf("Exception caused by index: %-,d\n", i);
+				System.out.printf("Exception caused by index: %,d\n", i);
 				testError = true;
 				break;
 			}
