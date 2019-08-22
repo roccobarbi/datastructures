@@ -72,7 +72,7 @@ public class BenchmarkTest {
 			System.out.println("\nResizingQueue");
 			printResultsSingleTestHead();
 			for (int size: testSizes) {
-				resizingStackSingleSizeBenchmark(size);
+				resizingQueueSingleSizeBenchmark(size);
 			}
 		} catch (Exception e) {
 			System.out.println("Exception encountered: " + e.getMessage());
