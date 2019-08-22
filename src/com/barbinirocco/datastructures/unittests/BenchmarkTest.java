@@ -78,10 +78,34 @@ public class BenchmarkTest {
 			System.out.println("Exception encountered: " + e.getMessage());
 		}
 	}
+	
+	private static void DoublyLinkedListSingleSizeBenchmark(int testSize) throws OverflowException {
+		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
+		ResizingQueue<Integer> queue =  new ResizingQueue<Integer>(10, Integer.valueOf(1));
+		for (int i = 0; i < testSize; i++) {
+			startTime = System.nanoTime();
+			queue.enqueue(i);
+			curTime = System.nanoTime() - startTime;
+			timeAccumulator += curTime;
+			minTime = Long.min(minTime, curTime);
+			maxTime = Long.max(maxTime, curTime);
+		}
+		printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
+	}
+	
+	private static void DoublyLinkedListBenchmark() {
+		int testSizes[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+		try {
+			System.out.println("\nResizingQueue");
+			printResultsSingleTestHead();
+			for (int size: testSizes) {
+				DoublyLinkedListSingleSizeBenchmark(size);
+			}
+		} catch (Exception e) {
+			System.out.println("Exception encountered: " + e.getMessage());
+		}
+	}
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		BenchmarkTest.resizingStackBenchmark();
 		BenchmarkTest.resizingQueueBenchmark();
