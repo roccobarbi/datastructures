@@ -16,16 +16,12 @@ import com.barbinirocco.datastructures.exceptions.OverflowException;
  */
 public class BenchmarkTest {
 	
-	private static void printResultsSingleTest(int testSize, long timeAccumulator, long minTime, long maxTime) {
-		System.out.print(">> ");
-		System.out.print(testSize);
-		System.out.println(" elements added <<");
-		System.out.print("Min add time (ns): ");
-		System.out.println(minTime);
-		System.out.print("Average add time (ns): ");
-		System.out.println(timeAccumulator / testSize);
-		System.out.print("Max add time (ns): ");
-		System.out.println(maxTime);
+	private static void printResultsSingleTestHead() {
+		System.out.printf("%-15s%-10s%-10s%-10s\n", "elements", "min (ns)", "avg (ns)", "max (ns)");
+	}
+	
+	private static void printResultsSingleTestLine(int testSize, long avgSize, long minTime, long maxTime) {
+		System.out.printf("%-,15d%-,10d%-,10d%-,10d\n", testSize, minTime, avgSize, maxTime);
 	}
 	
 	private static void resizingStackSingleSizeBenchmark(int testSize) throws OverflowException {
@@ -39,12 +35,14 @@ public class BenchmarkTest {
 			minTime = Long.min(minTime, curTime);
 			maxTime = Long.max(maxTime, curTime);
 		}
-		printResultsSingleTest(testSize, timeAccumulator, minTime, maxTime);
+		printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
 	}
 	
 	private static void resizingStackBenchmark() {
 		int testSizes[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
 		try {
+			System.out.println("\nResizingStack");
+			printResultsSingleTestHead();
 			for (int size: testSizes) {
 				resizingStackSingleSizeBenchmark(size);
 			}
