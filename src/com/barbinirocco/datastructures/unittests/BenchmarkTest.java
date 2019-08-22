@@ -3,6 +3,7 @@
  */
 package com.barbinirocco.datastructures.unittests;
 
+import com.barbinirocco.datastructures.DoublyLinkedList;
 import com.barbinirocco.datastructures.ResizingQueue;
 import com.barbinirocco.datastructures.ResizingStack;
 import com.barbinirocco.datastructures.exceptions.OverflowException;
@@ -51,6 +52,7 @@ public class BenchmarkTest {
 	private static void resizingQueueSingleSizeBenchmark(int testSize) throws OverflowException {
 		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
 		ResizingQueue<Integer> queue =  new ResizingQueue<Integer>(10, Integer.valueOf(1));
+		boolean testError = false;
 		for (int i = 0; i < testSize; i++) {
 			try {
 				startTime = System.nanoTime();
@@ -62,10 +64,12 @@ public class BenchmarkTest {
 			}   catch (Error e) {
 				System.out.println("Exception encountered: " + e.getMessage());
 				System.out.println("Exception caused by index: " + i);
+				testError = true;
 				break;
 			}
 		}
-		printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
+		if (!testError)
+			printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
 	}
 	
 	private static void resizingQueueBenchmark() {
@@ -83,11 +87,12 @@ public class BenchmarkTest {
 	
 	private static void DoublyLinkedListSingleSizeBenchmark(int testSize) throws OverflowException {
 		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
-		ResizingQueue<Integer> queue =  new ResizingQueue<Integer>(10, Integer.valueOf(1));
+		DoublyLinkedList<Integer, Integer> list =  new DoublyLinkedList<Integer, Integer>(Integer.valueOf(1), Integer.valueOf(1));
+		boolean testError = false;
 		for (int i = 0; i < testSize; i++) {
 			try {
 				startTime = System.nanoTime();
-				queue.enqueue(i);
+				list.insert(i, i);;
 				curTime = System.nanoTime() - startTime;
 				timeAccumulator += curTime;
 				minTime = Long.min(minTime, curTime);
@@ -95,10 +100,12 @@ public class BenchmarkTest {
 			}  catch (Error e) {
 				System.out.println("Exception encountered: " + e.getMessage());
 				System.out.println("Exception caused by index: " + i);
+				testError = true;
 				break;
 			}
 		}
-		printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
+		if (!testError)
+			printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
 	}
 	
 	private static void DoublyLinkedListBenchmark() {
