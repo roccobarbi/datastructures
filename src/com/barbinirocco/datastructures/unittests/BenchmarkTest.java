@@ -16,6 +16,18 @@ import com.barbinirocco.datastructures.exceptions.OverflowException;
  */
 public class BenchmarkTest {
 	
+	private static void printResultsSingleTest(int testSize, long timeAccumulator, long minTime, long maxTime) {
+		System.out.print(">> ");
+		System.out.print(testSize);
+		System.out.println(" elements pushed <<");
+		System.out.print("Min push time (ns): ");
+		System.out.println(minTime);
+		System.out.print("Average push time (ns): ");
+		System.out.println(timeAccumulator / testSize);
+		System.out.print("Max push time (ns): ");
+		System.out.println(maxTime);
+	}
+	
 	private static void resizingStackSingleSizeBenchmark(int testSize) throws OverflowException {
 		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
 		ResizingStack<Integer> stack =  new ResizingStack<Integer>(10, Integer.valueOf(1));
@@ -27,15 +39,7 @@ public class BenchmarkTest {
 			minTime = Long.min(minTime, curTime);
 			maxTime = Long.max(maxTime, curTime);
 		}
-		System.out.print(">> ");
-		System.out.print(testSize);
-		System.out.println(" elements pushed <<");
-		System.out.print("Min push time (ns): ");
-		System.out.println(minTime);
-		System.out.print("Average push time (ns): ");
-		System.out.println(timeAccumulator / testSize);
-		System.out.print("Max push time (ns): ");
-		System.out.println(maxTime);
+		printResultsSingleTest(testSize, timeAccumulator, minTime, maxTime);
 	}
 	
 	private static void resizingStackBenchmark() {
