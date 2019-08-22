@@ -109,6 +109,7 @@ public class BenchmarkTest {
 	public static void main(String[] args) {
 		BenchmarkTest.resizingStackBenchmark();
 		BenchmarkTest.resizingQueueBenchmark();
+		BenchmarkTest.DoublyLinkedListBenchmark();
 	}
 
 }
