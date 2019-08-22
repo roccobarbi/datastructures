@@ -3,10 +3,6 @@
  */
 package com.barbinirocco.datastructures.unittests;
 
-import static org.junit.jupiter.api.Assertions.fail;
-
-import org.junit.jupiter.api.Test;
-
 import com.barbinirocco.datastructures.ResizingQueue;
 import com.barbinirocco.datastructures.ResizingStack;
 import com.barbinirocco.datastructures.exceptions.OverflowException;
