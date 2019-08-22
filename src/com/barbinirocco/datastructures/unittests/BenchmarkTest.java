@@ -16,7 +16,7 @@ import com.barbinirocco.datastructures.exceptions.OverflowException;
  */
 public class BenchmarkTest {
 	
-	private static void individualBenchmarkPush(int testSize) throws OverflowException {
+	private static void resizingStackSingleSizeBenchmark(int testSize) throws OverflowException {
 		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
 		ResizingStack<Integer> stack =  new ResizingStack<Integer>(10, Integer.valueOf(1));
 		for (int i = 0; i < testSize; i++) {
@@ -38,11 +38,11 @@ public class BenchmarkTest {
 		System.out.println(maxTime);
 	}
 	
-	private static void benchmarkPush() {
+	private static void resizingStackBenchmark() {
 		int testSizes[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
 		try {
 			for (int size: testSizes) {
-				individualBenchmarkPush(size);
+				resizingStackSingleSizeBenchmark(size);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class BenchmarkTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		BenchmarkTest.benchmarkPush();
+		BenchmarkTest.resizingStackBenchmark();
 	}
 
 }
