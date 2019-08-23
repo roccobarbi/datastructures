@@ -35,6 +35,7 @@ public class BenchmarkTest {
 				minTime = Long.min(minTime, curTime);
 				maxTime = Long.max(maxTime, curTime);
 			} catch (Error e) {
+				stack = null; // enable garbage collection
 				System.out.println("Exception encountered: " + e.getMessage());
 				System.out.printf("Exception caused by index: %,d\n", i);
 				testError = true;
@@ -71,6 +72,7 @@ public class BenchmarkTest {
 				minTime = Long.min(minTime, curTime);
 				maxTime = Long.max(maxTime, curTime);
 			}   catch (Error e) {
+				queue = null; // enable garbage collection
 				System.out.println("Exception encountered: " + e.getMessage());
 				System.out.printf("Exception caused by index: %,d\n", i);
 				testError = true;
@@ -107,6 +109,7 @@ public class BenchmarkTest {
 				minTime = Long.min(minTime, curTime);
 				maxTime = Long.max(maxTime, curTime);
 			}  catch (Error e) {
+				list = null;  // enable garbage collection
 				System.out.println("Exception encountered: " + e.getMessage());
 				System.out.printf("Exception caused by index: %,d\n", i);
 				testError = true;
