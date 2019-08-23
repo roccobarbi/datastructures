@@ -25,19 +25,28 @@ public class BenchmarkTest {
 	private static void resizingStackSingleSizeBenchmark(int testSize) throws OverflowException {
 		long timeAccumulator = 0, startTime, minTime = Long.MAX_VALUE, maxTime = Long.MIN_VALUE, curTime;
 		ResizingStack<Integer> stack =  new ResizingStack<Integer>(10, Integer.valueOf(1));
+		boolean testError = false;
 		for (int i = 0; i < testSize; i++) {
-			startTime = System.nanoTime();
-			stack.push(i);
-			curTime = System.nanoTime() - startTime;
-			timeAccumulator += curTime;
-			minTime = Long.min(minTime, curTime);
-			maxTime = Long.max(maxTime, curTime);
+			try {
+				startTime = System.nanoTime();
+				stack.push(i);
+				curTime = System.nanoTime() - startTime;
+				timeAccumulator += curTime;
+				minTime = Long.min(minTime, curTime);
+				maxTime = Long.max(maxTime, curTime);
+			} catch (Error e) {
+				System.out.println("Exception encountered: " + e.getMessage());
+				System.out.printf("Exception caused by index: %,d\n", i);
+				testError = true;
+				break;
+			}
 		}
-		printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
+		if (!testError)
+			printResultsSingleTestLine(testSize, timeAccumulator / testSize, minTime, maxTime);
 	}
 	
 	private static void resizingStackBenchmark() {
-		int testSizes[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000};
+		int testSizes[] = {10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000};
 		try {
 			System.out.println("\nResizingStack");
 			printResultsSingleTestHead();
