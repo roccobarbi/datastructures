@@ -21,10 +21,27 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	private Pair[] table;
 	private int currentSize, currentPrime, maxLoad, minLoad;
 
+	/**
+	 * Constructor with samples for the types of the key and the value, but with no indication of the desired minimum
+	 * size for the table. The lowest prime defined in the class for this purpose will be used instead. The samples are
+	 * not saved into the table, they are only needed to set up the instance correctly.
+	 * @param keySample
+	 * @param valueSample
+	 */
 	public ConcreteHashTable(K keySample, V valueSample) {
 		this(keySample, valueSample, primeSizes[0]);
 	}
-	
+
+	/**
+	 * Full constructor with samples for the types of the key and the value and an integer with the minimum size that the
+	 * table mush have. The samples are not saved into the table, they are only needed to set up the instance correctly.
+	 * The integer does not represent the actual size of the table: the size is always prime, but the prime used will be
+	 * equal to or greater than the supplied int.
+	 *
+	 * @param keySample
+	 * @param valueSample
+	 * @param minSize
+	 */
 	@SuppressWarnings("unchecked")
 	public ConcreteHashTable(K keySample, V valueSample, int minSize) {
 		this.currentPrime = 0;
