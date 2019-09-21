@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.barbinirocco.datastructures;
 
 import com.barbinirocco.datastructures.exceptions.NullKeyException;
@@ -25,8 +22,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	 * Constructor with samples for the types of the key and the value, but with no indication of the desired minimum
 	 * size for the table. The lowest prime defined in the class for this purpose will be used instead. The samples are
 	 * not saved into the table, they are only needed to set up the instance correctly.
-	 * @param keySample
-	 * @param valueSample
+	 *
+	 * @param keySample a sample for the type of the key
+	 * @param valueSample a sample for the type of the value
 	 */
 	public ConcreteHashTable(K keySample, V valueSample) {
 		this(keySample, valueSample, primeSizes[0]);
@@ -38,9 +36,9 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 	 * The integer does not represent the actual size of the table: the size is always prime, but the prime used will be
 	 * equal to or greater than the supplied int.
 	 *
-	 * @param keySample
-	 * @param valueSample
-	 * @param minSize
+	 * @param keySample a sample for the type of the key
+	 * @param valueSample a sample for the type of the value
+	 * @param minSize the minimum size for the instance (smallest larger prime from the class will be used)
 	 */
 	@SuppressWarnings("unchecked")
 	public ConcreteHashTable(K keySample, V valueSample, int minSize) {
@@ -78,7 +76,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		this.maxLoad = (int) (0.9 * primeSizes[this.currentPrime]);
 		this.minLoad = (int) (0.5 * primeSizes[this.currentPrime]);
 		this.table = table;
-	};
+	}
 	
 	/**
 	 * 
@@ -148,7 +146,7 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 		private V value;
 		private Pair prev, next;
 
-		public Pair(K key, V value) {
+		Pair(K key, V value) {
 			this.key = key;
 			this.value = value;
 			this.prev = null;
@@ -160,31 +158,31 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			return key.hashCode();
 		}
 
-		public K getKey() {
+		K getKey() {
 			return key;
 		}
 
-		public V getValue() {
+		V getValue() {
 			return value;
 		}
 
-		public void setValue(V value) {
+		void setValue(V value) {
 			this.value = value;
 		}
 
-		public Pair getPrev() {
+		Pair getPrev() {
 			return prev;
 		}
 
-		public void setPrev(Pair prev) {
+		void setPrev(Pair prev) {
 			this.prev = prev;
 		}
 
-		public Pair getNext() {
+		Pair getNext() {
 			return next;
 		}
 
-		public void setNext(Pair next) {
+		void setNext(Pair next) {
 			this.next = next;
 		}
 
