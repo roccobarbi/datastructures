@@ -143,51 +143,30 @@ public class ConcreteHashTable<K, V> implements HashTable<K, V> {
 			return key.hashCode();
 		}
 
-		/**
-		 * @return the key
-		 */
 		public K getKey() {
 			return key;
 		}
 
-		/**
-		 * @return the value
-		 */
 		public V getValue() {
 			return value;
 		}
-		
-		/**
-		 * @param value the value to set
-		 */
+
 		public void setValue(V value) {
 			this.value = value;
 		}
 
-		/**
-		 * @return the prev
-		 */
 		public Pair getPrev() {
 			return prev;
 		}
 
-		/**
-		 * @param prev the prev to set
-		 */
 		public void setPrev(Pair prev) {
 			this.prev = prev;
 		}
 
-		/**
-		 * @return the next
-		 */
 		public Pair getNext() {
 			return next;
 		}
 
-		/**
-		 * @param next the next to set
-		 */
 		public void setNext(Pair next) {
 			this.next = next;
 		}
